@@ -907,12 +907,13 @@ mainApp.controller('settingController', function($scope,$filter,$route, $rootSco
 	}
     
     var onSuccess = function(FILE_URI) {
+    	alert(FILE_URI);
+    	
 		$('.spinner').stop().fadeOut('fast');
         $scope.picData='';
 		$scope.picData = FILE_URI;
 		var random = Math.floor(Math.random()*1000);
         $scope.profilepic = FILE_URI + "?dummy=" + random;
-		//alert(fileName);
         $scope.$apply();		
 		var myImg =$scope.picData;	
 		var options = new FileUploadOptions();
@@ -927,6 +928,7 @@ mainApp.controller('settingController', function($scope,$filter,$route, $rootSco
 		ft.upload(myImg,encodeURI(api_url + "changeprofilepic.php"), win, fail,options);	
 	};
     var onFail = function(e) {
+    	$('.spinner').stop().fadeOut('fast');
         console.log("On fail " + e);
     }
 	
